@@ -24,6 +24,10 @@
       = t('.you_cant_transfer_this_project_html', :organization => @current_project.organization)
       = link_to t('.manage_organizations'), organizations_path
 
+.estimated.text_field
+  = f.label :estimation, "Estimación"
+  = f.text_field :estimation
+  
 .check_box.archived
   = f.check_box :archived
   = f.label :archived, t('projects.fields.archived_html')

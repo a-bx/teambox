@@ -7,4 +7,8 @@
   - unless @current_project
     = filter_project_dropdown('hours_main_project_filter')
     = filter_organization_dropdown('hours_main_organization_filter')
-
+    = filter_hours_assigned_dropdown('hours_main_user_filter', @current_project)
+  %strong= 'Tipo :'
+  %select
+    %option{:value => '1'} Facturable
+    %option{:value => '0'} No Facturable

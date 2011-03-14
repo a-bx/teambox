@@ -1,6 +1,7 @@
 var Hours = {
   initFromJSON: function(hours_data) {
     Hours.init(hours_data.start)
+    Hours.projectEstimation = hours_data.estimation
     Hours.addHours(hours_data.hours)
     Hours.userMap = hours_data.userMap
     Hours.userNameMap = hours_data.userNameMap
@@ -232,7 +233,8 @@ var Hours = {
       $('hour_total').insert({top:code})
     }
     $('total_sum').innerHTML = weekTotal.friendlyHours()
-    
+    $('total_estimated').innerHTML = this.projectEstimation.friendlyHours();
+
     // Insert comments into the calendar
     this.insertCommentBlocks(comments, function(v, list, block){
       list.keys().each(function(key){

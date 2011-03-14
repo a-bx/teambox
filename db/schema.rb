@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110212184746) do
+ActiveRecord::Schema.define(:version => 20110314180251) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -301,6 +301,7 @@ ActiveRecord::Schema.define(:version => 20110212184746) do
     t.boolean  "public"
     t.integer  "organization_id"
     t.boolean  "deleted",         :default => false, :null => false
+    t.float    "estimation"
   end
 
   add_index "projects", ["deleted"], :name => "index_projects_on_deleted"

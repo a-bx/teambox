@@ -18,6 +18,10 @@
       %p.inline= t('.choose_organization.or_create_a_new_org_html', :link => new_organization_path)
       = errors_for project, :organization_id
 
+.estimated.text_field
+  = f.label :estimation, "Estimación"
+  = f.text_field :estimation
+
 %h3= t('projects.fields.extra_options')
 - if time_tracking_enabled?
   .check_box.archived

@@ -9,6 +9,7 @@ class Project
       xml.tag! 'created-at', created_at.to_s(:db)
       xml.tag! 'updated-at', updated_at.to_s(:db)
       xml.tag! 'archived', archived
+      xml.tag! 'estmation', estimation
       xml.tag! 'owner-user-id', user_id
       xml.people :count => people.size do
         for person in people
@@ -27,6 +28,7 @@ class Project
       :archived => archived,
       :created_at => created_at.to_s(:api_time),
       :updated_at => updated_at.to_s(:api_time),
+      :estimation => estimation,
       :archived => archived,
       :owner_user_id => user_id
     }

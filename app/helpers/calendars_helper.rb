@@ -57,6 +57,7 @@ module CalendarsHelper
     week_tally = {}
     total_tally = {}
     total_sum = 0
+    estimated_sum = 0
     week_count = 0
  
     first.upto(last) do |cur|
@@ -100,8 +101,9 @@ module CalendarsHelper
     wk << "<td id=\"hour_total\" class=\"max_total total\">"
     wk << '</tr><tr>'
     wk << "<td colspan=\"#{weeks}\" class=\"blank\"></td><td class=\"max_total total\">"
-    wk << "<p id='total_sum' class='hour'>0#{t('hours.entry_hours')}</p>"
-
+    wk << "Consumido<p id='total_sum' class='hour'>0#{t('hours.entry_hours')}</p>"
+    wk << "Estimado<p id='total_estimated' class='hour'>0#{t('hours.entry_hours')}</p>"
+      
     wk << '</td></tr><tr>'
     wk << '</tr></table>' 
     wk.html_safe
@@ -247,18 +249,24 @@ module CalendarsHelper
  
     usermap = {}
     usernamemap = {}
-
+    estimation = "0"
     if @current_project
       @current_project.users.each {|u| usermap[u.id] = u.login; usernamemap[u.id] = h(u.name)}
+      estimation = "#{@current_project.estimation}" 
     else
       @current_user.users_with_shared_projects.each {|u| usermap[u.id] = u.login; usernamemap[u.id] = h(u.name)}
     end
+    
+    if estimation.blank?
+      estimation = 0
+    end 
  
     start_date = start_of_calendar(year, month)
     start = "new Date(#{start_date.year}, #{start_date.month-1}, #{start_date.day})"
     
     javascript_tag <<-EOS
       HOURS_DATA = {
+        estimation: #{estimation},
         start: #{start},
         hours: [#{args.join(',')}],
         userMap: #{usermap.to_json},
