@@ -28,6 +28,11 @@
   = f.label :estimation, "Estimación"
   = f.text_field :estimation
   
+.text_field
+  = f.label :estimation_type_id, "Tipo de Estimación"
+  = errors_for project, :estimation_type_id
+  = f.select :estimation_type_id, options_for_estimation_types(@estimation_types)
+
 .check_box.archived
   = f.check_box :archived
   = f.label :archived, t('projects.fields.archived_html')

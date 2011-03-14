@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110314180251) do
+ActiveRecord::Schema.define(:version => 20110314214053) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -154,6 +154,12 @@ ActiveRecord::Schema.define(:version => 20110314180251) do
     t.datetime "created_on"
   end
 
+  create_table "estimation_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "google_docs", :force => true do |t|
     t.integer  "project_id"
     t.integer  "user_id"
@@ -293,15 +299,16 @@ ActiveRecord::Schema.define(:version => 20110314180251) do
     t.string   "name"
     t.string   "permalink"
     t.integer  "last_comment_id"
-    t.integer  "comments_count",  :default => 0,     :null => false
-    t.boolean  "archived",        :default => false
-    t.boolean  "tracks_time",     :default => false
+    t.integer  "comments_count",     :default => 0,     :null => false
+    t.boolean  "archived",           :default => false
+    t.boolean  "tracks_time",        :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "public"
     t.integer  "organization_id"
-    t.boolean  "deleted",         :default => false, :null => false
+    t.boolean  "deleted",            :default => false, :null => false
     t.float    "estimation"
+    t.integer  "estimation_type_id", :default => 1
   end
 
   add_index "projects", ["deleted"], :name => "index_projects_on_deleted"

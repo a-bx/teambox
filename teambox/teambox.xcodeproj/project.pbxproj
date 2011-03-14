@@ -2081,6 +2081,10 @@
 		6A61601A132EA32800E5B7F1 /* rcov.opts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rcov.opts; sourceTree = "<group>"; };
 		6A61601B132EA32800E5B7F1 /* spec_helper.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = spec_helper.rb; sourceTree = "<group>"; };
 		6A61601D132EA32800E5B7F1 /* authenticated_test_helper.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = authenticated_test_helper.rb; sourceTree = "<group>"; };
+		6A61601F132EC0E000E5B7F1 /* 20110314213211_add_estimation_type_to_project.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = 20110314213211_add_estimation_type_to_project.rb; sourceTree = "<group>"; };
+		6A616020132EC30000E5B7F1 /* 20110314214053_create_estimation_types.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = 20110314214053_create_estimation_types.rb; sourceTree = "<group>"; };
+		6A616021132EC35A00E5B7F1 /* estimation_type.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = estimation_type.rb; sourceTree = "<group>"; };
+		6A616022132EC52200E5B7F1 /* estimation_types_helper.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = estimation_types_helper.rb; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -2185,6 +2189,7 @@
 		6A6157D1132EA32300E5B7F1 /* helpers */ = {
 			isa = PBXGroup;
 			children = (
+				6A616022132EC52200E5B7F1 /* estimation_types_helper.rb */,
 				6A6157D2132EA32400E5B7F1 /* activities_helper.rb */,
 				6A6157D3132EA32400E5B7F1 /* apidocs_helper.rb */,
 				6A6157D4132EA32400E5B7F1 /* application_helper.rb */,
@@ -2273,6 +2278,7 @@
 		6A61581D132EA32400E5B7F1 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				6A616021132EC35A00E5B7F1 /* estimation_type.rb */,
 				6A61581E132EA32400E5B7F1 /* ability.rb */,
 				6A61581F132EA32400E5B7F1 /* activity.rb */,
 				6A615820132EA32400E5B7F1 /* address.rb */,
@@ -3269,6 +3275,8 @@
 		6A615A81132EA32500E5B7F1 /* migrate */ = {
 			isa = PBXGroup;
 			children = (
+				6A616020132EC30000E5B7F1 /* 20110314214053_create_estimation_types.rb */,
+				6A61601F132EC0E000E5B7F1 /* 20110314213211_add_estimation_type_to_project.rb */,
 				6A615A82132EA32500E5B7F1 /* 20100429210031_initial_schema.rb */,
 				6A615A83132EA32500E5B7F1 /* 20100429222246_lift_biography_constraint.rb */,
 				6A615A84132EA32500E5B7F1 /* 20100505055336_create_vestal_versions.rb */,

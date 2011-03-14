@@ -14,9 +14,12 @@ class Project < ActiveRecord::Base
                  :invitations,
                  :conversions
 
-  attr_accessible :name, :permalink, :archived, :estimation, :tracks_time, :public, :organization_attributes, :organization_id
+  attr_accessible :name, :permalink, :archived, :estimation, :tracks_time, :public, :organization_attributes, :organization_id, :estimation_type_id
+    
   has_many :google_docs
   
+  belongs_to :estimation_type
+    
   attr_accessor :is_importing
   attr_accessor :import_activities
   

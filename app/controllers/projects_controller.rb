@@ -15,6 +15,7 @@ class ProjectsController < ApplicationController
   
   def index
     @new_conversation = Conversation.new(:simple => true)
+    @estimation_types = EstimationType.all()
     @activities = Activity.for_projects(@projects)
     @threads = @activities.threads.all(:include => [:project, :target])
     @last_activity = @threads.last
@@ -34,6 +35,7 @@ class ProjectsController < ApplicationController
   def show
     @activities = Activity.for_projects(@current_project)
     @threads = @activities.threads.all(:include => [:project, :target])
+    @estimation_types = EstimationType.all()      
     @last_activity = @threads.last
     @recent_conversations = @current_project.conversations.not_simple.recent(4)
     @new_conversation = @current_project.conversations.new(:simple => true)
@@ -51,6 +53,7 @@ class ProjectsController < ApplicationController
 
   def new
     authorize! :create_project, current_user
+    @estimation_types = EstimationType.all()      
     @project = Project.new
     @project.build_organization
     
@@ -62,7 +65,8 @@ class ProjectsController < ApplicationController
   def create
     @project = current_user.projects.new(params[:project])
     authorize! :create_project, current_user
-
+    @estimation_types = EstimationType.all()
+      
     respond_to do |f|
       if @project.save
         f.html { redirect_to project_invite_people_path(@project) }
@@ -76,6 +80,7 @@ class ProjectsController < ApplicationController
 
   def edit
     authorize! :update, @current_project
+    @estimation_types = EstimationType.all()      
     @sub_action = params[:sub_action] || 'settings'
     
     respond_to do |f|
@@ -88,6 +93,7 @@ class ProjectsController < ApplicationController
     authorize!(:transfer, @current_project) if params[:sub_action] == 'ownership'
     @sub_action = params[:sub_action] || 'settings'
     @organization = @current_project.organization if @current_project.organization
+    @estimation_types = EstimationType.all()      
 
     if @current_project.update_attributes(params[:project])
       flash.now[:success] = t('projects.edit.success')
@@ -111,11 +117,12 @@ class ProjectsController < ApplicationController
     @current_project.invite_emails = params[:project][:invite_emails]
     @current_project.send_invitations!
     redirect_to @current_project
+    @estimation_types = EstimationType.all()      
   end
 
   def transfer
     authorize! :transfer, @current_project
-    
+    @estimation_types = EstimationType.all()
     # Grab new owner
     user_id = params[:project][:user_id] rescue nil
     person = @current_project.people.find_by_user_id(user_id)
@@ -155,6 +162,7 @@ class ProjectsController < ApplicationController
   skip_before_filter :belongs_to_project?, :only => [:join]
 
   def join
+    @estimation_types = EstimationType.all()
     if @current_project.organization.is_admin?(current_user)
       @current_project.add_user(current_user, :role => Person::ROLES[:admin])
       flash[:success] = t('projects.join.welcome')
@@ -169,6 +177,7 @@ class ProjectsController < ApplicationController
   end
 
   def list
+    @estimation_types = EstimationType.all()
     @people = current_user.people
     @roles = {  Person::ROLES[:observer] =>    t('roles.observer'),
                 Person::ROLES[:commenter] =>   t('roles.commenter'),
