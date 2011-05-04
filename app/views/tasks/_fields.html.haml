@@ -29,7 +29,10 @@
   .assigned_to.text_field
     = f.label :assigned_id, t('comments.new.assigned_to')
     = f.select :assigned_id, []
-
+  .assigned_to
+    = f.label :estimation, "Estimación"
+    = f.text_field :estimation
   .pick_date
     = f.label :due_on, t('.due_on_html')
     = date_picker(f, :due_on)
+

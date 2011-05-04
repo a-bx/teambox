@@ -397,7 +397,7 @@ describe User do
     
     it "should fall back to default locale when setting not in list of available locales" do
       user = Factory.create(:user, :locale => 'xy')
-      user.locale.should == 'en'
+      user.locale.should == 'es'
     end
 
     it "should allow special name formatting for foreign locales" do
